@@ -11,6 +11,7 @@ from typing import IO, Any, cast
 
 __all__ = ["events", "renderer"]
 
+from bbb_presentation_video import error_tracking
 from bbb_presentation_video.events import DEFAULT_PRESENTATION_POD, parse_events
 from bbb_presentation_video.renderer import Codec, Renderer
 
@@ -122,6 +123,8 @@ def main() -> None:
     )
 
     args = parser.parse_args()
+
+    error_tracking.init()
 
     try:
         bpv_metadata = metadata(__package__)
