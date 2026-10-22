@@ -26,6 +26,10 @@ mypy_path = "$MYPY_CONFIG_FILE_DIR/typings"
 module = "sortedcollections"
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = "opentelemetry.*"
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 pythonpath = ["."]
 addopts = [

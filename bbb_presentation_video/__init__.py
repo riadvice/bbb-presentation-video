@@ -11,6 +11,7 @@ from typing import IO, Any, cast
 
 __all__ = ["events", "renderer"]
 
+from bbb_presentation_video import telemetry
 from bbb_presentation_video.events import DEFAULT_PRESENTATION_POD, parse_events
 from bbb_presentation_video.renderer import Codec, Renderer
 
@@ -123,6 +124,11 @@ def main() -> None:
 
     args = parser.parse_args()
 
+    with telemetry.render_span(path.basename(path.abspath(args.input))):
+        render(args)
+
+
+def render(args: argparse.Namespace) -> None:
     try:
         bpv_metadata = metadata(__package__)
         print(f'{bpv_metadata["Name"]} version {bpv_metadata["Version"]}')
